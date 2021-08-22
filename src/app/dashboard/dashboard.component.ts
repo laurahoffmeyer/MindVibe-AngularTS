@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MoodService } from './../services/mood.service';
-import { User } from '../models/user.model';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -30,13 +29,11 @@ export class DashboardComponent implements OnInit {
       let userID: string = this.id;
       this.moodService.getUserEntries(mood, entrydate, entrytime, journalentry, userID).subscribe(result => {
         this.userEntries = result;
-        // console.log(this.userEntries);
         this.total = 0;
         this.userEntries.forEach(element => {
           this.total += element.mood;
         });
         this.average = (this.total) / (this.userEntries.length);
-        // console.log(this.average);
         this.displayAverage = Math.round(this.average * 10) / 10;
       })
     })
@@ -48,9 +45,3 @@ export class DashboardComponent implements OnInit {
     this.moodService.clickedEntry = {};
   }
 }
-
-
-
-
-
-

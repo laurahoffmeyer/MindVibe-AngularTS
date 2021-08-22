@@ -58,12 +58,6 @@ export class MoodService {
   addNewEntry(newEntry: Entry): Observable<any[]> {
     return this.http.post<any[]>(this.apiURL, newEntry);
   }
-
-  // updateEntry(entryID: number, entryObject: any): Observable<any[]> {       
-  //   return this.http.put<any[]>(`http://localhost:3000/entries` + `/${entryID}`, 
-  //   JSON.stringify(entryObject));
-  // }
-
   getAllEntryActivitiesPerEntryId(entryId: string): Observable<any> {
     return this.http.get<any[]>(
       `https://mindvibe.herokuapp.com/entryactivities`,

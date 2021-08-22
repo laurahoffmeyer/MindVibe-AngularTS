@@ -23,7 +23,6 @@ export class EntryPageComponent implements OnInit {
   newEntryId: number = 0;
   entryToEdit: any = {}
   newEntry: Entry;
-  // exsistingEntryId: number = this.item.id;
 
   get activityArray(): Activity[] {
     return this.moodService.activityArray;
@@ -128,34 +127,8 @@ export class EntryPageComponent implements OnInit {
           });
           this.router.navigate(['/pastentries']);
         })
-        // this.ngZone.run(() => {
-        //   this.router.navigate(['/pastentries']);
-        // })    
       })
     });
   }
-
-  // updateEntry() {
-  // this.auth.user$.subscribe(user => {
-  //   this.UserId = user.uid;
-
-  //   let entryObject = {
-  //     mood: this.mood,
-  //     entrydate: this.entrydate,
-  //     entrytime: this.entrytime,
-  //     journalentry: this.journalentry,
-  //     user_id: this.UserId,
-  //     id: this.entryToEdit.id
-  //   }
-  //   console.log(entryObject);
-  //   this.moodService.updateEntry(this.entryToEdit.id, entryObject).subscribe(result => {
-  //     console.log(entryObject);
-  //     console.log(result);
-
-  //     console.log(this.entryToEdit.id);
-
-  //   })
-  // })
-  // }
 }
 

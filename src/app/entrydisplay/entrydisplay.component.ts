@@ -1,9 +1,7 @@
 import { MoodService } from '../services/mood.service';
 import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Entry } from '../models/entry.model';
 import { Activity } from '../models/activity';
-import { EntryActivity } from '../models/entryactivity';
 
 @Component({
   selector: 'app-entrydisplay',
@@ -57,6 +55,5 @@ export class EntrydisplayComponent implements OnInit {
       });
     }
   }
-
 }
 

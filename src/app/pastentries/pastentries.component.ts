@@ -1,7 +1,7 @@
 import { MoodService } from './../services/mood.service';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Entry } from '../models/entry.model';
 
 @Component({
@@ -58,9 +58,7 @@ export class PastentriesComponent implements OnInit {
     this.moodService.getAllEntryActivitiesPerEntryId(entry.id).subscribe(newList => {
       newList.forEach(element => {
         let newId = element.id;
-        // console.log(newId);
         this.moodService.deleteEntryFromEA(newId).subscribe(() => {
-          // console.log(`I'm deleting EA Table id = ${newId}`);
         })
       });
     })
