@@ -32,9 +32,14 @@
         <div class="amount">X {{ each.amount }}</div>
       </div>
     </div>
-    <h4>
-      {{noactivity}}
-    </h4>
+    <div class="container text-center" *ngIf="noactivity !== ''">
+      <h4>{{noactivity}}</h4>
+      <p>The more days you use MindVibe, the more data you can reflect back on.</p>
+      <p>Did you create a new entry for today yet?</p>
+      <button (click)="goToEntryPage()">
+        <i class="fas fa-plus-circle fa-5x"></i>
+      </button>  
+    </div>
   </ng-template>
 </div>
 

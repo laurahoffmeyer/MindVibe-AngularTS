@@ -2,29 +2,26 @@
   margin: 0px;
   padding: 0px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .dash-container h3 {
   font-size: 18px;
   margin-top: 0px;
 }
-.avgMoodDiv i {
-  color: #2C0F70;
+.avg-mood i {
+  color: #18083D;
+}
+.welcome {
+  margin-bottom: 20px;
+}
+.welcome > h2 {
+  color: #9268F2;
 }
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-}
-.displayAverage {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  font-size: 20px;
-}
-.avgMoodDiv {
-  display: flex;
-  justify-content: center;
 }
 .smiley {
   padding-top: 15px;

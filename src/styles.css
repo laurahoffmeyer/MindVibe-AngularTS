@@ -9,12 +9,12 @@ html {
 body {
   padding: 0;
   font-family: "Ovo", serif;
-  color: #2C0F70;
+  color: #18083D;
   clear: both;
   background-color: #4A19BD;
 }
 a {
-  color: #2C0F70;
+  color: #18083D;
 }
 a:hover {
   color: #9268F2;
@@ -29,7 +29,7 @@ a:visited {
   color: #9268F2;
 }
 .fa-plus-circle:hover {
-  color: #2C0F70;
+  color: #18083D;
 }
 
 /* tablet */

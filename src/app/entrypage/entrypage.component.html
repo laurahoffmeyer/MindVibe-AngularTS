@@ -16,21 +16,19 @@
 
     <ul class="key">
       <li class="social">Social</li>
-      <li class="hobbies">Hobbies</li>
-      <li class="phyfeelings">Physical Feelings</li>
-      <li class="habits">Habits</li>
-      <li class="fitness">Fitness</li>
-      <li class="emotions">Emotions</li>
+      <li class="activity">Activity</li>
+      <li class="health">Health</li>
+      <li class="action">Action</li>
+      <li class="emotion">Emotion</li>
     </ul>   
 
     <fieldset id="activity">
       <div *ngFor="let activity of activityArray; let i = index">
         <label [ngClass]="activity.category === 'Social' ? 'social' : '' || 
-        activity.category === 'Hobbies' ? 'hobbies' : '' ||
-        activity.category === 'Health' ? 'phyfeelings' : '' ||
-        activity.category === 'Habits' ? 'habits' : '' ||
-        activity.category === 'Fitness' ? 'fitness' : '' ||
-        activity.category === 'Feeling' ? 'emotions' : ''
+        activity.category === 'Activity' ? 'activity' : '' ||
+        activity.category === 'Health' ? 'health' : '' ||
+        activity.category === 'Action' ? 'action' : '' ||
+        activity.category === 'Emotion' ? 'emotion' : ''
         " for="{{ activity.id }}">
           <input
             [checked]="activityList.includes(activity.id)"

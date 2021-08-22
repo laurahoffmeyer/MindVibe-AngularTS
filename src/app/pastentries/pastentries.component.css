@@ -6,6 +6,15 @@
   margin: 0px 30px;
   text-align: center;
 }
+.no-entries {
+  margin-bottom: 25px;
+}
+.no-entries .fa-chevron-up {
+ opacity: 0.3;
+}
+h3 {
+  margin-top: 0;
+}
 .wrapper > button {
   margin: 10px 0 30px 0;
 }
@@ -39,7 +48,7 @@ button:hover {
   color: #9268F2;
 }
 .dateAndTime button:hover {
-  color: #2C0F70;
+  color: #18083D;
 }
 .fa-trash-alt {
   font-size: 25px;

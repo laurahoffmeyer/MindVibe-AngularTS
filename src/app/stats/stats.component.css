@@ -1,6 +1,6 @@
 .stat-container .container {
   max-width: 500px;
-  margin: 15px auto 80px auto;
+  margin: 15px auto 50px auto;
 }
 .stat-container h3 {
   margin: 40px 0 20px 0;
@@ -17,11 +17,19 @@
 h4, h3, h1, h2 {
   text-align: center;
 }
+h4 {
+  margin: 40px 0;
+}
 i {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 5px 0 15px 0;
+}
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 .report-buttons {
   display: flex;
@@ -40,8 +48,8 @@ i {
   padding: 20px 30px;
   border-radius: 10px;
   background: transparent;
-  border: 1px solid #2C0F70;
-  color: #2C0F70;
+  border: 1px solid #18083D;
+  color: #18083D;
 }
 .report-buttons button:hover {
   cursor: pointer;

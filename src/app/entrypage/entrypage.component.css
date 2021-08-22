@@ -14,8 +14,8 @@
   margin: 20px 0px;
 }
 .entry-container button:hover {
-  border: 1px solid #2C0F70!important;
-  color: #2C0F70!important;
+  border: 1px solid #18083D!important;
+  color: #18083D!important;
   cursor: pointer;
 }
 .entry-container i {
@@ -62,7 +62,7 @@ input[type="radio"] {
   cursor: pointer;
 }
 input[type="radio"] + label {
-  opacity: 0.5!important;
+  opacity: 0.3!important;
 }
 input[type="radio"]:checked + label {
   opacity: 1!important;
@@ -77,14 +77,6 @@ input[type="radio"]:hover + label {
   cursor: pointer;
   height: 0;
   width: 0;
-
-  /* position: relative;
-  display: block;
-  width: 15px;
-  height: 15px;
-  content: "";
-  border: none;
-  background: #9268F2; */
 }
 .checkmark {
   position: absolute;
@@ -112,26 +104,18 @@ input[type="radio"]:hover + label {
 .checkmark:hover {
   background-color: #fff;
 }
-
-/* When the checkbox is checked, add a blue background */
 input:checked ~ .checkmark {
   background-color: #9268F2;
   opacity: 1;
 }
-
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
-
-/* Show the checkmark when checked */
 input:checked ~ .checkmark:after {
   display: block;
 }
-
-/* Style the checkmark/indicator */
 .checkmark:after {
   left: 9px;
   top: 5px;
@@ -160,19 +144,16 @@ input:checked ~ .checkmark:after {
 .social {
   color: #FECD1A;
 }
-.hobbies {
+.activity {
   color: #F43B86;
 }
-.phyfeelings {
+.health {
   color: #91D18B;
 }
-.habits {
+.action {
   color: #efa6b7;
 }
-.fitness {
-  color: #FBECEC;
-}
-.emotions {
+.emotion {
   color: #00BDAA;
 }
 .key {
@@ -210,6 +191,10 @@ input:checked ~ .checkmark:after {
     flex-basis: 47%;
     font-size: 16px;
     line-height: 20px;  
+  } 
+  #moods label {
+    font-size: 70px;
+    padding: 5px;
   }  
 }
 

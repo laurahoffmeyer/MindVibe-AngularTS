@@ -87,7 +87,7 @@ export class StatsComponent implements OnInit {
       }
     });
     if (this.happyDays.length === 0) {
-      this.noactivity = "You have no happy days to report";
+      this.noactivity = "you have no happy days to report ...";
       // this.HappyActivitiesNamesandCategories.push(this.noActivitiesObject);
     } else {
       this.HappyActivitiesNamesandCategories = [];
@@ -154,7 +154,7 @@ export class StatsComponent implements OnInit {
       }
     });
     if (this.sadDays.length === 0) {
-      this.noactivity = "You have no sad days to report";
+      this.noactivity = "you have no sad days to report ...";
       // this.SadActivitiesNamesandCategories.push(this.noActivitiesObject);
     } else {
       this.SadActivitiesNamesandCategories = [];
