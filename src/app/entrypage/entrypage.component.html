@@ -1,0 +1,56 @@
+<div class="container entry-container">
+  <form>
+    <h1>Create New Entry</h1>
+    <h3>How are you feeling today?</h3>
+    <div class="moods-container">
+      <fieldset id="moods" name="moods" class="moods">
+        <input name="mood" id="sad" class="sad" type="radio" [(ngModel)]="mood" [value]="1" required><label for="sad"><i class="far fa-sad-tear"></i></label>
+        <input name="mood" id="frown" class="frown" type="radio" [(ngModel)]="mood" [value]="2"><label for="frown"><i class="far fa-frown"></i></label>
+        <input name="mood" id="meh" class="meh" type="radio" [(ngModel)]="mood" [value]="3"><label for="meh"><i class="far fa-meh"></i></label>
+        <input name="mood" id="smile" class="smile" type="radio" [(ngModel)]="mood" [value]="4"><label for="smile"><i class="far fa-smile"></i></label>
+        <input name="mood" id="laugh" class="laugh" type="radio" [(ngModel)]="mood" [value]="5"><label for="laugh"><i class="far fa-laugh-beam"></i></label>
+      </fieldset>
+    </div>
+
+    <h3>What did you do?</h3>
+
+    <ul class="key">
+      <li class="social">Social</li>
+      <li class="hobbies">Hobbies</li>
+      <li class="phyfeelings">Physical Feelings</li>
+      <li class="habits">Habits</li>
+      <li class="fitness">Fitness</li>
+      <li class="emotions">Emotions</li>
+    </ul>   
+
+    <fieldset id="activity">
+      <div *ngFor="let activity of activityArray; let i = index">
+        <label [ngClass]="activity.category === 'Social' ? 'social' : '' || 
+        activity.category === 'Hobbies' ? 'hobbies' : '' ||
+        activity.category === 'Health' ? 'phyfeelings' : '' ||
+        activity.category === 'Habits' ? 'habits' : '' ||
+        activity.category === 'Fitness' ? 'fitness' : '' ||
+        activity.category === 'Feeling' ? 'emotions' : ''
+        " for="{{ activity.id }}">
+          <input
+            [checked]="activityList.includes(activity.id)"
+            (change)="toggleActivityList(activity.id, $event)"
+            id="{{ activity.id }}"
+            name="{{ activity.id }}"
+            type="checkbox"
+            value="{{ activity.id }}"
+          />
+          {{ activity.name }}
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </fieldset>
+
+    <h3>Write down your thoughts <small>(optional)</small><br><br></h3>
+    <textarea Rows="5" id="journal" name="journal" [(ngModel)]="journalentry"> </textarea>
+    <!-- <button *ngIf="entryToEdit.id" (click)="updateEntry()">Update Entry</button> -->
+    <button *ngIf="entryToEdit.id === undefined" (click)="addNewEntry()">
+      Submit Entry
+    </button>
+  </form>
+</div>

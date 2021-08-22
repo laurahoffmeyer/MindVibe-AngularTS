@@ -1,0 +1,29 @@
+  <div class="dash-container">
+    <h1>Hello {{ displayName }}</h1>
+    <h3>Your average daily mood is {{ displayAverage }} / 5</h3>
+    <div class="avgMoodDiv">
+      <div class="smiley" *ngIf="average >= 4.5">
+        <i class="far fa-laugh-beam fa-10x"></i>
+        <div class="phrase">Exceptional!</div>
+      </div>
+      <div class="smiley" *ngIf="average >= 3.5 && average < 4.5">
+        <i class="far fa-smile fa-10x"></i>
+        <div class="phrase">Pretty Good!</div>
+      </div>
+      <div class="smiley" *ngIf="average >= 2.5 && average < 3.5">
+        <i class="far fa-meh fa-10x"></i>
+        <div class="phrase">Meh</div>
+      </div>
+      <div class="smiley" *ngIf="average >= 1.5 && average < 2.5">
+        <i class="far fa-frown fa-10x"></i>
+        <div class="phrase">Not Good</div>
+      </div>
+      <div class="smiley" *ngIf="average >= 1 && average < 1.5">
+        <i class="far fa-sad-tear fa-10x"></i>
+        <div class="phrase">Awful</div>
+      </div>
+    </div>
+    <button (click)="goToEntryPage()">
+      <i class="fas fa-plus-circle fa-5x"></i>
+    </button>
+  </div>

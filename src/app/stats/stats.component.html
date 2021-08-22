@@ -1,0 +1,40 @@
+<div class="stat-container">
+  <h1>Your Stats</h1>
+  <div class="report-buttons">
+    <button (click)="happyDaysDidThis()" [ngClass]="hBtnStatus ? 'active' : ''">
+      <i class="far fa-laugh-beam fa-4x"></i> Happy Day Activities
+    </button>
+    <button (click)="sadDaysDidThis()" [ngClass]="sBtnStatus ? 'active' : ''">
+      <i class="far fa-sad-tear fa-4x"></i> Sad Day Activities
+    </button>
+  </div>
+  <div *ngIf="!sBtnStatus && !hBtnStatus; then selectReport; else listresults" >
+  </div>
+
+  <ng-template #selectReport>
+    <h2 #selectReport>Select a report above</h2>
+  </ng-template>
+
+  <ng-template #listresults class="list">
+
+    <div class="container" *ngIf="loopFinished">
+      <h3>{{hsheading}}</h3>
+      <i class="fas fa-arrow-circle-down fa-2x"></i>
+      <div class="results" *ngFor="let each of HappyActivitiesNamesandCategories">
+        <div class="category">{{ each.category }}</div>
+        <div class="name">{{ each.name }}</div>
+        <div class="amount">X {{ each.amount }}</div>
+      </div>
+
+      <div class="results" *ngFor="let each of SadActivitiesNamesandCategories">
+        <div class="category">{{ each.category }}</div>
+        <div class="name">{{ each.name }}</div>
+        <div class="amount">X {{ each.amount }}</div>
+      </div>
+    </div>
+    <h4>
+      {{noactivity}}
+    </h4>
+  </ng-template>
+</div>
+

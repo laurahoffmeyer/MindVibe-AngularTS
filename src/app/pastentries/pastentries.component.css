@@ -1,0 +1,79 @@
+.wrapper {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 30px;
+  text-align: center;
+}
+.wrapper > button {
+  margin: 10px 0 30px 0;
+}
+.entryList {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 12px;
+  max-width: 550px;
+}
+.entryList i {
+  font-size: 30px;
+}
+button {
+  font-family: "Ovo", serif;
+  border: none;
+  background-color: transparent;
+}
+button:hover {
+  cursor: pointer;
+  color: #9268F2;
+}
+.dateAndTime {
+  padding: 0 10px;
+}
+.dateAndTime button {
+  font-size: 22px;
+  color: #9268F2;
+}
+.dateAndTime button:hover {
+  color: #2C0F70;
+}
+.fa-trash-alt {
+  font-size: 25px;
+}
+
+/* tablet */
+@media only screen and (min-width: 768px) {
+  .entryList i {
+    font-size: 32px;
+  }
+    
+  .dateAndTime button {
+    font-size: 25px;
+  }  
+
+  .fa-edit,
+  .fa-trash-alt {
+    font-size: 25px;
+  }
+}
+
+/* computer */
+@media only screen and (min-width: 992px) {
+
+  .entryList i {
+    font-size: 35px;
+  }
+  
+  .dateAndTime button {
+    font-size: 30px;
+  }  
+
+  .fa-edit,
+  .fa-trash-alt {
+    font-size: 30px;
+  }
+}

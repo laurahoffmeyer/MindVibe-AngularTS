@@ -1,0 +1,42 @@
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  margin-top: 85px;
+  margin-bottom: 100px;
+}
+
+body {
+  padding: 0;
+  font-family: "Ovo", serif;
+  color: #2C0F70;
+  clear: both;
+  background-color: #4A19BD;
+}
+a {
+  color: #2C0F70;
+}
+a:hover {
+  color: #9268F2;
+}
+a:visited {
+  color: #9268F2;
+}
+.active-link {
+  color: #9268F2!important;
+}
+.fa-plus-circle {
+  color: #9268F2;
+}
+.fa-plus-circle:hover {
+  color: #2C0F70;
+}
+
+/* tablet */
+@media only screen and (min-width: 768px) {
+  html {
+    margin-top: 150px;
+    margin-bottom: 0;
+  }
+  
+}

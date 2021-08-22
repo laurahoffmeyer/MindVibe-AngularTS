@@ -1,0 +1,34 @@
+.display-container i {
+  color: #9268F2;
+}
+h1 {
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 30px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.face {
+  display: flex;
+  justify-content: center;
+}
+
+.didThis {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  font-size: 18px;
+  color: #9268F2;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.journal-entry {
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+  margin-bottom: 20px;
+}

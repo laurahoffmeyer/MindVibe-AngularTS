@@ -1,0 +1,29 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  font-size: x-large;
+  font-weight: 900;
+  align-items: center;
+}
+
+button {
+  font-weight: 800;
+  padding: 15px 25px 5px 25px;
+  background-color: #9268F2;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: #4A19BD;
+  font-size: 20px;
+  margin: 20px 0;
+}
+button:hover {
+  cursor: pointer;
+  color: #4A19BD;
+  background-color: #2C0F70;
+}
+.homepage i {
+  padding: 0 10px 0 0;
+  margin-top: -8px;
+}

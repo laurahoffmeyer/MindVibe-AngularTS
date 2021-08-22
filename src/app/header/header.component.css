@@ -1,0 +1,84 @@
+header {
+  position: fixed;
+  top:0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #2C0F70;
+  z-index: 100;
+  font-size: 18px;
+}
+header a {
+  color: #5F1FF0;
+  text-decoration: none;
+}
+header a:hover {
+  color: #9268F2;
+}
+:target {
+  color: #9268F2;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+}
+nav .brand {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+.brand p {
+  display: none;
+}
+.navbar-brand {
+  font-size: 24px;
+}
+.linkies {
+  display: none;
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 18px;
+  color: #5F1FF0;
+  border: none;
+  font-family: "Ovo", serif;
+  text-decoration: none;
+}
+button:hover {
+  color: #9268F2;
+}
+@media only screen and (min-width: 768px) {
+  .linkies > a, .linkies > button {
+    display: block;
+    margin: 12px;
+  }
+
+  .linkies {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .navbar-brand {
+    border-right: 1px solid #5F1FF0;
+    padding-right: 30px;
+    margin-right: 25px;
+  }
+  nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+  } 
+  .brand p {
+    display: flex;
+    color: #5F1FF0;
+    font-size: 15px;
+    margin-top: 12px;
+  }  
+}
