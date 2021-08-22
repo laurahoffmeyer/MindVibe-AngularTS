@@ -19,7 +19,7 @@ export class MoodService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  apiURL: string = `https://happy-cranky.herokuapp.com/entries`;
+  apiURL: string = `https://mindvibe.herokuapp.com/entries`;
 
   getUserEntries(
     moodVar: string,
@@ -66,7 +66,7 @@ export class MoodService {
 
   getAllEntryActivitiesPerEntryId(entryId: string): Observable<any> {
     return this.http.get<any[]>(
-      `https://happy-cranky.herokuapp.com/entryactivities`,
+      `https://mindvibe.herokuapp.com/entryactivities`,
       {
         params: { entry_id: entryId }
       }
@@ -75,7 +75,7 @@ export class MoodService {
 
   deleteEntryFromEA(eaId: number): Observable<Entry[]> {
     return this.http.delete<Entry[]>(
-      `https://happy-cranky.herokuapp.com/entryactivities/${eaId}`
+      `https://mindvibe.herokuapp.com/entryactivities/${eaId}`
     );
   }
 
@@ -83,19 +83,19 @@ export class MoodService {
     entryActivity: EntryActivity
   ): Observable<EntryActivity[]> {
     return this.http.post<EntryActivity[]>(
-      'https://happy-cranky.herokuapp.com/entryactivities',
+      'https://mindvibe.herokuapp.com/entryactivities',
       entryActivity
     );
   }
 
   getActivityNameAndCategory(id): Observable<any[]> {
     return this.http.get<any[]>(
-      `https://happy-cranky.herokuapp.com/activities/${id}`
+      `https://mindvibe.herokuapp.com/activities/${id}`
     );
   }
 
   getActivitiesByCategory(category: string): Observable<Activity[]> {
-    return this.http.get<Activity[]>('https://happy-cranky.herokuapp.com/activities',
+    return this.http.get<Activity[]>('https://mindvibe.herokuapp.com/activities',
       {
         params: { category: category }
       }
@@ -103,9 +103,7 @@ export class MoodService {
   }
 
   getAllActivities(): Observable<Activity[]> {
-    return this.http.get<Activity[]>('https://happy-cranky.herokuapp.com/activities');
-  }
-
-  
+    return this.http.get<Activity[]>('https://mindvibe.herokuapp.com/activities');
+  } 
 
 }
