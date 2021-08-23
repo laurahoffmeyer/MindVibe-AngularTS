@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyBLLeCjrkjNLzlxyyQUFuXqijx9FAD_SqA",
-    authDomain: "mindvibe-c74f8.firebaseapp.com",
-    projectId: "mindvibe-c74f8",
-    storageBucket: "mindvibe-c74f8.appspot.com",
-    messagingSenderId: "1070879750222",
-    appId: "1:1070879750222:web:67ca3cbe881dd506642b1f"
-    }
+    apiKey: "AIzaSyAbCJ60b2q8UKCaFoeiBvRwqawq17dnmAM",
+    authDomain: "mindvibe-b57b5.firebaseapp.com",
+    projectId: "mindvibe-b57b5",
+    storageBucket: "mindvibe-b57b5.appspot.com",
+    messagingSenderId: "281444022123",
+    appId: "1:281444022123:web:ebdce2d9f572a138823e2e"
+  }
 };
