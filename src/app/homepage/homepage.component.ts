@@ -19,7 +19,9 @@ export class HomepageComponent implements OnInit {
   id: string = "";
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
-      this.id = user.uid;
+      if(user) {
+        this.id = user.uid;
+      }
     })
   }
 

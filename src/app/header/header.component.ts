@@ -13,18 +13,13 @@ export class HeaderComponent implements OnInit {
 
   UserId = "";
 
-  get usersignedin() {
-    return this.auth.usersignedin;
-  }
-
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      this.UserId = user.uid;
-
-      if (this.UserId !== null) {
-        this.auth.usersignedin = true;
+    this.auth.user$.subscribe(user => { 
+      if(user) {
+        this.UserId = user.uid;
+      } else {
+        this.router.navigate(["/homepage"]);
       }
-      
     })
   }
 }
