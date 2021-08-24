@@ -4,7 +4,7 @@
       <a routerLink="/dashboard" routerLinkActive="active-link" class="navbar-brand">MindVibe</a>
       <p>Live • Journal • Reflect</p>
     </div>
-    <div *ngIf="usersignedin === true" class="linkies">
+    <div *ngIf="UserId !== ''" class="linkies">
       <a routerLink="/pastentries" routerLinkActive="active-link">Your Entries</a>
       <a routerLink="/stats" routerLinkActive="active-link">Stats</a>
       <button (click)="auth.signOut()">Sign Out</button>

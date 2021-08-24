@@ -24,20 +24,21 @@ export class DashboardComponent implements OnInit {
     let entrytime: string = "";
     let journalentry: string = "";
     this.auth.user$.subscribe(user => {
-      this.displayName = user.displayName;
-      this.id = user.uid;
-      let userID: string = this.id;
-      this.moodService.getUserEntries(mood, entrydate, entrytime, journalentry, userID).subscribe(result => {
-        this.userEntries = result;
-        this.total = 0;
-        this.userEntries.forEach(element => {
-          this.total += element.mood;
-        });
-        this.average = (this.total) / (this.userEntries.length);
-        this.displayAverage = Math.round(this.average * 10) / 10;
-      })
+      if (user) {
+        this.displayName = user.displayName;
+        this.id = user.uid;
+        let userID: string = this.id;
+        this.moodService.getUserEntries(mood, entrydate, entrytime, journalentry, userID).subscribe(result => {
+          this.userEntries = result;
+          this.total = 0;
+          this.userEntries.forEach(element => {
+            this.total += element.mood;
+          });
+          this.average = (this.total) / (this.userEntries.length);
+          this.displayAverage = Math.round(this.average * 10) / 10;
+        })      
+      }
     })
-
   }
 
   goToEntryPage() {

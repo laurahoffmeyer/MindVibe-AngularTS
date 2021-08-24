@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
+import { firebase } from '@firebase/app';
+import '@firebase/auth';
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -15,13 +15,13 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   user$: Observable<User>;
-  usersignedin;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
-  ) {
+  ) 
+  {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -37,12 +37,10 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
     this.router.navigate(["/dashboard"]);
-    this.usersignedin = true;
     return this.updateUserData(credential.user);
   }
 
   async signOut() {
-    this.usersignedin = false;
     await this.afAuth.signOut();
     return this.router.navigate(['/homepage']);
   }
@@ -54,5 +52,4 @@ export class AuthService {
     };
     return userRef.set(data, { merge: true });
   }
-
 }
