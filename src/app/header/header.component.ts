@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
       if(user) {
         this.UserId = user.uid;
       } else {
+        this.UserId = "";
         this.router.navigate(["/homepage"]);
       }
     })
