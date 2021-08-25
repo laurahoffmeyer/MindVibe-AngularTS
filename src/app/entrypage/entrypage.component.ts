@@ -23,6 +23,7 @@ export class EntryPageComponent implements OnInit {
   newEntryId: number = 0;
   entryToEdit: any = {}
   newEntry: Entry;
+    // exsistingEntryId: number = this.item.id;
 
   get activityArray(): Activity[] {
     return this.moodService.activityArray;
@@ -53,6 +54,24 @@ export class EntryPageComponent implements OnInit {
       });
     }
 
+    // if (this.entryToEdit.id !== undefined) {
+    //   this.mood = this.entryToEdit.mood;
+    //   this.entrydate = this.entryToEdit.entrydate;
+    //   this.entrytime = this.entryToEdit.entrytime;
+    //   this.journalentry = this.entryToEdit.journalentry;
+    //   this.UserId = this.entryToEdit.UserId;
+
+    //   this.moodService.getAllEntryActivitiesPerEntryId(this.entryToEdit.id).subscribe(result => {
+    //     result.forEach(element => {
+    //       let id = element.activity_id;
+
+    //       this.activityList.push({id});
+    //     });
+    //   });
+    // }
+
+
+    console.log(this.activityList.length);
     this.moodService.getAllActivities().subscribe(result => {
       if (this.moodService.activityArray.length === 0) {
         result.forEach((activity: Activity) => {
@@ -60,6 +79,10 @@ export class EntryPageComponent implements OnInit {
         });
       }
     })
+  }
+
+  displayHobbies() {
+    // return this.activityArray ? this.activityArray.categoy === "Hobbies" : undefined;
   }
 
   getCurrentDate() {
@@ -81,7 +104,7 @@ export class EntryPageComponent implements OnInit {
     const checked = event.target.checked;
 
     if (checked) {
-      this.activityList.push({ id });
+      this.activityList.push(id);
     } else {
       const index = this.activityList.findIndex(list => list == id);
       this.activityList.splice(index, 1);
@@ -119,7 +142,7 @@ export class EntryPageComponent implements OnInit {
           this.activityList.forEach(activity => {
             let newEntryActivity: EntryActivity = {
               entry_id: this.newEntryId,
-              activity_id: activity.id
+              activity_id: activity
             }
             console.log(newEntryActivity);
             this.moodService.addEntryActivities(newEntryActivity).subscribe(result => {
@@ -129,6 +152,45 @@ export class EntryPageComponent implements OnInit {
         })
       })
     });
+  }
+
+  updateEntry() {
+    console.log(this.activityList.length);
+    this.auth.user$.subscribe(user => {
+      this.UserId = user.uid;
+      let entryObject = {
+        mood: this.mood,
+        entrydate: this.entrydate,
+        entrytime: this.entrytime,
+        journalentry: this.journalentry,
+        user_id: this.UserId,
+        id: this.entryToEdit.id
+      }
+      console.log(entryObject);
+      this.moodService.updateEntry(this.entryToEdit.id, entryObject).subscribe(result => {
+
+        this.moodService.getAllEntryActivitiesPerEntryId(this.entryToEdit.id).subscribe(eaList => {
+          eaList.forEach(element => {
+            let eaId = element.id;
+            this.moodService.deleteEntryFromEA(eaId).subscribe(() => {
+            })
+          });
+        })
+        console.log(this.activityList.length);
+
+        if(this.activityList.length > 0) {
+          this.activityList.forEach(activity => {
+            let updatedEntryActivity: EntryActivity = {
+              entry_id: this.entryToEdit.id,
+              activity_id: activity
+            }
+            this.moodService.addEntryActivities(updatedEntryActivity).subscribe(result => {
+            });
+          });
+        }
+       this.router.navigate(['/pastentries']);
+      })
+    })
   }
 }
 

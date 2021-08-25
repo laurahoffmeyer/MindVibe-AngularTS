@@ -47,7 +47,7 @@
 
     <h3>Write down your thoughts <small>(optional)</small><br><br></h3>
     <textarea Rows="5" id="journal" name="journal" [(ngModel)]="journalentry"> </textarea>
-    <!-- <button *ngIf="entryToEdit.id" (click)="updateEntry()">Update Entry</button> -->
+    <button *ngIf="entryToEdit.id" (click)="updateEntry()">Update Entry</button>
     <button *ngIf="entryToEdit.id === undefined" (click)="addNewEntry()">
       Submit Entry
     </button>

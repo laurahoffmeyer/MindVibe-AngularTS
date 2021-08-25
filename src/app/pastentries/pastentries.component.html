@@ -10,6 +10,9 @@
     <h4>Just click the + sign button above to create a new entry for today.</h4>
   </div>
   <div class="entryList" *ngFor="let entry of userEntries">
+    <button (click)="editEntry(entry)">
+      <i class="far fa-edit fa-2x"></i>
+    </button>
     <div>
         <i *ngIf="entry.mood === 1" class="far fa-sad-tear"></i>
         <i *ngIf="entry.mood === 2" class="far fa-frown"></i>

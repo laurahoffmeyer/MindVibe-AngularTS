@@ -58,6 +58,18 @@ export class MoodService {
   addNewEntry(newEntry: Entry): Observable<any[]> {
     return this.http.post<any[]>(this.apiURL, newEntry);
   }
+  
+  updateEntry(entryID: number, entryObject: any): Observable<any[]> { 
+    return this.http.put<any[]>(`https://mindvibe.herokuapp.com/entryactivities` + `/${entryID}`, entryObject);
+  }
+
+  addEntryActivities(entryActivity: EntryActivity): Observable<EntryActivity[]> {
+    return this.http.post<EntryActivity[]>(
+      'https://mindvibe.herokuapp.com/entryactivities',
+      entryActivity
+    );
+  }
+
   getAllEntryActivitiesPerEntryId(entryId: string): Observable<any> {
     return this.http.get<any[]>(
       `https://mindvibe.herokuapp.com/entryactivities`,
@@ -70,15 +82,6 @@ export class MoodService {
   deleteEntryFromEA(eaId: number): Observable<Entry[]> {
     return this.http.delete<Entry[]>(
       `https://mindvibe.herokuapp.com/entryactivities/${eaId}`
-    );
-  }
-
-  addEntryActivities(
-    entryActivity: EntryActivity
-  ): Observable<EntryActivity[]> {
-    return this.http.post<EntryActivity[]>(
-      'https://mindvibe.herokuapp.com/entryactivities',
-      entryActivity
     );
   }
 
@@ -98,6 +101,5 @@ export class MoodService {
 
   getAllActivities(): Observable<Activity[]> {
     return this.http.get<Activity[]>('https://mindvibe.herokuapp.com/activities');
-  } 
-
+  }
 }
