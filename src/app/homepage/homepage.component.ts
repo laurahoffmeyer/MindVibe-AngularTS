@@ -17,17 +17,22 @@ export class HomepageComponent implements OnInit {
   }
 
   id: string = "";
+
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
       if(user) {
         this.id = user.uid;
+        console.log(this.id);
       }
     })
   }
 
   checkLoginStatus() {
     if (this.id) {
-      this.router.navigate(["/dashboard"]);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/dashboard']);
+      }); 
+      // this.router.navigate(["/dashboard"]);
       return true;
     }
     return false;

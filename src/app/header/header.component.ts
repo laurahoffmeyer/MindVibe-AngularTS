@@ -11,14 +11,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(public auth: AuthService, public router: Router) { }
 
-  UserId = "";
+  id = "";
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => { 
+    
+    this.auth.user$.subscribe(user => {
       if(user) {
-        this.UserId = user.uid;
+        this.id = user.uid;
+        console.log(this.id);
       } else {
-        this.UserId = "";
+        this.id = "";
         this.router.navigate(["/homepage"]);
       }
     })
