@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
-// import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { EntryPageComponent } from './entrypage/entrypage.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -32,7 +31,6 @@ import { EntrydisplayComponent } from './entrydisplay/entrydisplay.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    // AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
