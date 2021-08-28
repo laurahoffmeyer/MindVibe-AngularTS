@@ -17,7 +17,7 @@
 
   <ng-template #listresults class="list">
 
-    <div class="container" *ngIf="loopFinished">
+    <div class="results-container" *ngIf="loopFinished">
       <h3>{{hsheading}}</h3>
       <i class="fas fa-arrow-circle-down fa-2x"></i>
       <div class="results" *ngFor="let each of HappyActivitiesNamesandCategories">
@@ -32,12 +32,12 @@
         <div class="amount">X {{ each.amount }}</div>
       </div>
     </div>
-    <div class="container text-center" *ngIf="noactivity !== ''">
+    <div class="results-container text-center" *ngIf="noactivity !== ''">
       <h4>{{noactivity}}</h4>
       <p>The more days you use MindVibe, the more data you can reflect back on.</p>
       <p>Did you create a new entry for today yet?</p>
-      <button (click)="goToEntryPage()">
-        <i class="fas fa-plus-circle fa-5x"></i>
+      <button class="add-new" (click)="goToEntryPage()">
+        <span>Add</span> <i class="fas fa-plus-circle fa-5x"></i> <span>New</span>
       </button>  
     </div>
   </ng-template>

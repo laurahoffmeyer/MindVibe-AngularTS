@@ -15,6 +15,8 @@ export class PastentriesComponent implements OnInit {
 
   id: string = "";
   public userEntries = [];
+  popupActive = false;
+  entryToDelete;
 
   get clickedEntry(): any {
     return this.moodService.clickedEntry;
@@ -39,54 +41,39 @@ export class PastentriesComponent implements OnInit {
       })
     })
   }
-
   goToEntryPage() {
     this.router.navigate(['/entrypage']);
     this.moodService.clickedEntry = {};
   }
-
   displayEntry(entry: any) {
-    this.moodService.clickedEntry = {};
+    this.moodService.clickedEntry = entry;
     this.router.navigate(['/entrydisplay']);
+  }
+  openPopup(entry: any) {
+    this.entryToDelete = entry;
+    this.popupActive = true;
+  }
+  closePopup() {
+    this.entryToDelete = {};
+    this.popupActive = false;
   }
   editEntry(entry: any) {
     this.moodService.clickedEntry = entry;
     this.router.navigate(['/entrypage']);
-    // console.log(this.moodService.clickedEntry);
-    // this.moodService.getUserEntries(data).subscribe(entry => {
-      // this.setEntryID = data;
-    //   this.router.navigate(['/entrypage']);
-    // })
-}
-
-  // setEntryID(entry: any) {
-  //   console.log(entry);
-  //   this.moodService.clickedEntry = entry.result.map((result: any) => {
-  //     console.log(result);
-  //     return {
-  //       id: result.id,
-  //       mood: result.mood,
-  //       journalentry: result.journalentry,
-  //       entrydate: result.entrydate,
-  //       entrytime: result.entrytime,
-  //       user_id: result.user_id
-  //     }
-  //   })
-  //   }
-
-  deleteEntry(entry) {
-    this.moodService.deleteEntry(entry.id).subscribe((entries: Entry[]) => {
+  }
+  deleteEntry() {
+    this.moodService.deleteEntry(this.entryToDelete.id).subscribe((entries: Entry[]) => {
       this.userEntries = entries;
       this.displayEntries();
     })
-    this.moodService.getAllEntryActivitiesPerEntryId(entry.id).subscribe(newList => {
+    this.moodService.getEAs(this.entryToDelete.id).subscribe(newList => {
       newList.forEach(element => {
         let newId = element.id;
-        this.moodService.deleteEntryFromEA(newId).subscribe(() => {
+        this.moodService.deleteEA(newId).subscribe(() => {
         })
       });
     })
+    this.closePopup()
   }
-
 }
 

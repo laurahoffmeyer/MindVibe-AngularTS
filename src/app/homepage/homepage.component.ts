@@ -22,7 +22,6 @@ export class HomepageComponent implements OnInit {
     this.auth.user$.subscribe(user => {
       if(user) {
         this.id = user.uid;
-        console.log(this.id);
       }
     })
   }

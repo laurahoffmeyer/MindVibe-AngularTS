@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   average: number;
   displayName: string = '';
   displayAverage: number;
+  remainder: number;
 
   constructor(public auth: AuthService, private moodService: MoodService, public router: Router) { }
 
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit {
     let journalentry: string = "";
     this.auth.user$.subscribe(user => {
       if (user) {
-        this.displayName = user.displayName;
+        this.displayName = this.titleCase(user.displayName);
         this.id = user.uid;
         let userID: string = this.id;
         this.moodService.getUserEntries(mood, entrydate, entrytime, journalentry, userID).subscribe(result => {
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
             this.total += element.mood;
           });
           this.average = (this.total) / (this.userEntries.length);
-          this.displayAverage = Math.round(this.average * 10) / 10;
+          this.displayAverage = Math.round((this.average * 10) / 10);
         })      
       }
     })
@@ -45,4 +46,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/entrypage']);
     this.moodService.clickedEntry = {};
   }
+
+  titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+ }
 }

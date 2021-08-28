@@ -10,17 +10,22 @@
   color: white;
   background-color: #18083D;
 }
-.links-container > div {
+.links-container div {
   flex-grow: 1;
 }
-.links-container > div > a {
+.links-container div a {
   display: flex;
   color: #5F1FF0;
   text-decoration: none;
   justify-content: center;
-  border-left: 1px solid #5F1FF0;
 }
-.links-container > div > a:hover {
+.links-container div {
+  border-right: 1px solid #5F1FF0;
+}
+.links-container div:last-child {
+  border: none;
+}
+.links-container div a:hover {
   color: #9268F2;
 }
 i {

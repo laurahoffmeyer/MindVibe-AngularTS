@@ -23,7 +23,7 @@ a:visited {
   color: #9268F2;
 }
 .active-link {
-  color: #9268F2!important;
+  color: #9268F2;
 }
 .fa-plus-circle {
   color: #9268F2;
@@ -31,12 +31,18 @@ a:visited {
 .fa-plus-circle:hover {
   color: #18083D;
 }
+button {
+  font-family: "Ovo", serif;
+  background-color: transparent;
+}
+button:hover {
+  cursor: pointer;
+}
 
 /* tablet */
 @media only screen and (min-width: 768px) {
   html {
-    margin-top: 150px;
+    margin-top: 125px;
     margin-bottom: 0;
   }
-  
 }

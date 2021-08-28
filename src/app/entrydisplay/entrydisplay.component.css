@@ -1,34 +1,94 @@
+.display-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+}
 .display-container i {
   color: #9268F2;
 }
 h1 {
-  text-align: center;
   padding: 15px 0px;
   font-size: 30px;
+  font-weight: bold;
 }
-
 h2 {
-  text-align: center;
+  font-weight: bold;
 }
-
+h5 {
+  margin-top: 30px;
+  font-size: 50px;
+  opacity: 0.3;
+}
+p {
+  font-size: 24px;
+  line-height: 22px;
+  font-weight: bold;
+  z-index: 1000;
+}
+strong {
+  font-size: 20px;
+}
+.exit {
+  margin-top: 15px;
+}
+.exit i {
+  font-size: 30px;
+  opacity: 0.5;
+}
+.exit i:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+button {
+  background: transparent;
+  font-family: "Ovo", serif;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin: 20px 0px;
+  font-size: 22px;
+  font-weight: bold;
+  max-width: 400px;
+  width: 100%;
+  color: #4A19BD;
+  background-color: #9268F2;
+  border: none;
+}
+button:hover {
+  background-color: #18083D!important;
+  cursor: pointer;
+}
 .face {
   display: flex;
   justify-content: center;
 }
-
-.didThis {
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-  font-size: 18px;
-  color: #9268F2;
-}
-.mt-30 {
+.journal {
   margin-top: 30px;
+  width: 100%;
 }
 .journal-entry {
   font-size: 18px;
   text-align: center;
   line-height: 30px;
   margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .exit {
+    margin-top: 5px;
+  }
+  .exit i {
+    font-size: 40px;
+  }
+  .two-column {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .two-column > div {
+  flex: 0 1 48%;
+  }  
 }

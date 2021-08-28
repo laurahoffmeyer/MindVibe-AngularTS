@@ -80,9 +80,9 @@ export class StatsComponent implements OnInit {
     } else {
       this.HappyActivitiesNamesandCategories = [];
       this.happyDays.forEach((element) => {
-        this.moodService.getAllEntryActivitiesPerEntryId(element).subscribe((result) => {
+        this.moodService.getEAs(element).subscribe((result) => {
               result.forEach((EAResult, index) => {
-                this.moodService.getActivityNameAndCategory(EAResult.activity_id).subscribe((fullActivity: any) => {
+                this.moodService.getActivityInfoById(EAResult.activity_id).subscribe((fullActivity: any) => {
 
                   let foundActivity = this.HappyActivitiesNamesandCategories.find(activity => activity.id === fullActivity.id)
                   
@@ -129,9 +129,9 @@ export class StatsComponent implements OnInit {
     } else {
       this.SadActivitiesNamesandCategories = [];
       this.sadDays.forEach((element) => {
-        this.moodService.getAllEntryActivitiesPerEntryId(element).subscribe((result) => {
+        this.moodService.getEAs(element).subscribe((result) => {
           result.forEach((EAResult, index) => {
-            this.moodService.getActivityNameAndCategory(EAResult.activity_id).subscribe((fullActivity: any) => {
+            this.moodService.getActivityInfoById(EAResult.activity_id).subscribe((fullActivity: any) => {
 
               let foundActivity = this.SadActivitiesNamesandCategories.find(activity => activity.id === fullActivity.id)
               

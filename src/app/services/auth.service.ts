@@ -14,29 +14,20 @@ import '@firebase/auth';
 
   user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   token$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  gtoken$;
  
   constructor(private router: Router, public readonly fireauth: AngularFireAuth) {
-    // firebase.initializeApp(environment.firebaseConfig);
     if(this.user$) {
       fireauth.user.subscribe(this.user$);
       fireauth.idToken.subscribe(this.token$);
-  
-      // this.user$.getValue();
-      console.log(this.user$);
-      console.log(this.token$);
     }
 }
-
   async signIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
       var credential = result.credential as firebase.auth.OAuthCredential;
-      this.gtoken$ = credential.accessToken;
-      console.log(this.gtoken$);
-      console.log(this.user$);
+      // this.gtoken$ = credential.accessToken;
     }).catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -44,20 +35,7 @@ import '@firebase/auth';
       var credential = error.credential;
     });
   }
-
-  // isLoggedIn() {
-  //   firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-  //     // Send token to your backend via HTTPS
-  //     // ...
-  //   }).catch(function(error) {
-  //     // Handle error
-  //   });  }
-
-  async signOut() {
-    // this.fireauth.user.subscribe(this.user$);
-    // this.fireauth.idToken.subscribe(this.token$);
-
+  signOut() {
     this.fireauth.signOut();
-    console.log(this.user$);
   }
- }
+}

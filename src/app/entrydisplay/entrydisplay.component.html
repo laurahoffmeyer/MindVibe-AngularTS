@@ -1,31 +1,64 @@
 <div class="container display-container">
+  <div (click)="goToPastEntries()" class="exit">
+    <i class="far fa-times-circle"></i>
+  </div>
   <h1>On {{ entrydate }}, at {{ entrytime }}</h1>
   <div class="face">
     <div *ngIf="mood === 5">
-      <i class="far fa-laugh-beam fa-10x"></i>
+      <i class="far fa-laugh-beam fa-7x"></i>
     </div>
     <div *ngIf="mood === 4">
-      <i class="far fa-smile fa-10x"></i>
+      <i class="far fa-smile fa-7x"></i>
     </div>
     <div *ngIf="mood === 3">
-      <i class="far fa-meh fa-10x"></i>
+      <i class="far fa-meh fa-7x"></i>
     </div>
     <div *ngIf="mood === 2">
-      <i class="far fa-frown fa-10x"></i>
+      <i class="far fa-frown fa-7x"></i>
     </div>
     <div *ngIf="mood === 1">
-      <i class="far fa-sad-tear fa-10x"></i>
+      <i class="far fa-sad-tear fa-7x"></i>
     </div>
   </div>
 
-  <h2 *ngIf="activityNameAndCategory.length === 0">
+  <h2 *ngIf="activityObjects.length === 0">
     There are no activities listed.
   </h2>
 
-  <div *ngIf="activityNameAndCategory.length > 0">
-    <h2>You did these activities ...</h2>
-    <div class="didThis" *ngFor="let item of activityNameAndCategory">
-      {{ item.name }}
+  <h2 *ngIf="activityObjects.length > 0">
+    Your day brought ...
+  </h2>
+
+  <div [ngClass]="{'two-column' : !onlyOneCategory}">
+    <div *ngIf="dbSocialActivities.length > 0">
+      <h5>Events</h5>
+      <div *ngFor="let item of dbSocialActivities">
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+    <div *ngIf="dbHealthActivities.length > 0">
+      <h5>Health</h5>
+      <div *ngFor="let item of dbHealthActivities">
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+    <div *ngIf="dbEmotionActivities.length > 0">
+      <h5>Emotions</h5>
+      <div *ngFor="let item of dbEmotionActivities">
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+    <div *ngIf="dbActivityActivities.length > 0">
+      <h5>Activities</h5>
+      <div *ngFor="let item of dbActivityActivities">
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+    <div *ngIf="dbActionActivities.length > 0">
+      <h5>Actions</h5>
+      <div *ngFor="let item of dbActionActivities">
+        <p>{{ item.name }}</p>
+      </div>
     </div>
   </div>
 
@@ -33,8 +66,11 @@
     Nothing in your journal.
   </h2>
 
-  <div *ngIf="journalentry !== ''">
-    <h2 class="mt-30">Your Journal Entry</h2>
+  <div class="journal" *ngIf="journalentry !== ''">
+    <h2>Your Journal Entry</h2>
     <div class="journal-entry">{{ journalentry }}</div>
+  </div>
+  <div>
+    <button (click)="editEntry(entryToView)">Edit</button>
   </div>
 </div>

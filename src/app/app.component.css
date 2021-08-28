@@ -9,6 +9,7 @@ footer {
         margin-top: 80px;
         font-weight: bold;
         margin-bottom: 30px;
+        font-size: 14px;
     }
     footer p {
         border-top: 1px solid rgba(24, 8, 61, 0.2);

@@ -5,6 +5,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Entry } from '../models/entry.model';
 import { Activity } from '../models/activity';
 import { EntryActivity } from '../models/entryactivity';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-entrypage',
@@ -23,15 +24,24 @@ export class EntryPageComponent implements OnInit {
   newEntryId: number = 0;
   entryToEdit: any = {}
   newEntry: Entry;
-    // exsistingEntryId: number = this.item.id;
 
-  get activityArray(): Activity[] {
-    return this.moodService.activityArray;
-  }
   get clickedEntry(): any {
     return this.moodService.clickedEntry;
   }
-  activityList = [];
+
+  dbAllActivities = [];
+
+  dbSocialActivities = [];
+  dbHealthActivities = [];
+  dbEmotionActivities = [];
+  dbActivityActivities = [];
+  dbActionActivities = [];
+
+  selectedActivities = [];
+
+  formStep = 1;
+
+  pageTitle = "Create New Entry";
 
   ngOnInit(): void {
 
@@ -41,50 +51,47 @@ export class EntryPageComponent implements OnInit {
     this.entryToEdit = this.moodService.clickedEntry;
 
     if (this.entryToEdit.id !== undefined) {
+      this.pageTitle = "Edit Entry";
       this.mood = this.entryToEdit.mood;
       this.entrydate = this.entryToEdit.entrydate;
       this.entrytime = this.entryToEdit.entrytime;
       this.journalentry = this.entryToEdit.journalentry;
       this.UserId = this.entryToEdit.UserId;
 
-      this.moodService.getAllEntryActivitiesPerEntryId(this.entryToEdit.id).subscribe(result => {
+      this.moodService.getEAs(this.entryToEdit.id).subscribe(result => {
         result.forEach(element => {
-          this.activityList.push(element.activity_id);
+          this.selectedActivities.push(element.activity_id);
         });
       });
     }
 
-    // if (this.entryToEdit.id !== undefined) {
-    //   this.mood = this.entryToEdit.mood;
-    //   this.entrydate = this.entryToEdit.entrydate;
-    //   this.entrytime = this.entryToEdit.entrytime;
-    //   this.journalentry = this.entryToEdit.journalentry;
-    //   this.UserId = this.entryToEdit.UserId;
-
-    //   this.moodService.getAllEntryActivitiesPerEntryId(this.entryToEdit.id).subscribe(result => {
-    //     result.forEach(element => {
-    //       let id = element.activity_id;
-
-    //       this.activityList.push({id});
-    //     });
-    //   });
-    // }
-
-
-    console.log(this.activityList.length);
     this.moodService.getAllActivities().subscribe(result => {
-      if (this.moodService.activityArray.length === 0) {
+      if (this.dbAllActivities.length === 0) {
         result.forEach((activity: Activity) => {
-          this.moodService.activityArray.push(activity);
+          this.dbAllActivities.push(activity);
         });
+      this.addActivities("Social");
+      this.addActivities("Health");
+      this.addActivities("Emotion");
+      this.addActivities("Activity");
+      this.addActivities("Action");
       }
-    })
-  }
+   })
+}
 
-  displayHobbies() {
-    // return this.activityArray ? this.activityArray.categoy === "Hobbies" : undefined;
+  addActivities(category: string) {
+    if(category === "Social") {
+      this.dbSocialActivities = this.dbAllActivities.filter(activity => activity.category === category);
+    } else if(category === "Health") {
+      this.dbHealthActivities = this.dbAllActivities.filter(activity => activity.category === category);
+    } else if (category === "Emotion") {
+      this.dbEmotionActivities = this.dbAllActivities.filter(activity => activity.category === category);
+    } else if (category === "Activity") {
+      this.dbActivityActivities = this.dbAllActivities.filter(activity => activity.category === category);
+    } else if (category === "Action") {
+      this.dbActionActivities = this.dbAllActivities.filter(activity => activity.category === category);
+    }
   }
-
   getCurrentDate() {
     let currentDate = new Date();
     let dd = String(currentDate.getDate()).padStart(2, '0');
@@ -94,23 +101,30 @@ export class EntryPageComponent implements OnInit {
     this.entrydate = currentDate.toString();
     this.entrydate = mm + '/' + dd + '/' + yyyy;
   }
-
   getCurrentTime() {
     let currentTime = new Date().toLocaleTimeString();
     this.entrytime = currentTime.toString();
   }
-
   toggleActivityList(id, event) {
     const checked = event.target.checked;
 
     if (checked) {
-      this.activityList.push(id);
+      this.selectedActivities.push(id);
     } else {
-      const index = this.activityList.findIndex(list => list == id);
-      this.activityList.splice(index, 1);
+      const index = this.selectedActivities.findIndex(list => list == id);
+      this.selectedActivities.splice(index, 1);
     }
   }
 
+  goPrev() {
+    this.formStep--;
+  }
+  goNext() {
+    this.formStep++;
+  }
+  goToPastEntries() {
+    this.router.navigate(['/pastentries']);
+  }
   addNewEntry() {
     this.auth.user$.subscribe(user => {
 
@@ -124,10 +138,7 @@ export class EntryPageComponent implements OnInit {
         user_id: this.UserId
       }
 
-      console.log(this.newEntry);
-
-      this.moodService.addNewEntry(this.newEntry).subscribe(result => {
-        console.log(result);
+      this.moodService.createNewEntry(this.newEntry).subscribe(result => {
 
         let emptyMood = "";
         let emptyEntryDate = "";
@@ -137,15 +148,13 @@ export class EntryPageComponent implements OnInit {
 
         this.moodService.getUserEntries(emptyMood, emptyEntryDate, emptyEntrytime, emptyJournalentry, emptyUserId).subscribe(result => {
           this.newEntryId = result[0].id;
-          console.log(this.newEntryId);
           
-          this.activityList.forEach(activity => {
+          this.selectedActivities.forEach(activity => {
             let newEntryActivity: EntryActivity = {
               entry_id: this.newEntryId,
               activity_id: activity
             }
-            console.log(newEntryActivity);
-            this.moodService.addEntryActivities(newEntryActivity).subscribe(result => {
+            this.moodService.addActivities(newEntryActivity).subscribe(result => {
             });
           });
           this.router.navigate(['/pastentries']);
@@ -155,7 +164,6 @@ export class EntryPageComponent implements OnInit {
   }
 
   updateEntry() {
-    console.log(this.activityList.length);
     this.auth.user$.subscribe(user => {
       this.UserId = user.uid;
       let entryObject = {
@@ -166,25 +174,23 @@ export class EntryPageComponent implements OnInit {
         user_id: this.UserId,
         id: this.entryToEdit.id
       }
-      console.log(entryObject);
       this.moodService.updateEntry(this.entryToEdit.id, entryObject).subscribe(result => {
 
-        this.moodService.getAllEntryActivitiesPerEntryId(this.entryToEdit.id).subscribe(eaList => {
+        this.moodService.getEAs(this.entryToEdit.id).subscribe(eaList => {
           eaList.forEach(element => {
             let eaId = element.id;
-            this.moodService.deleteEntryFromEA(eaId).subscribe(() => {
+            this.moodService.deleteEA(eaId).subscribe(() => {
             })
           });
         })
-        console.log(this.activityList.length);
 
-        if(this.activityList.length > 0) {
-          this.activityList.forEach(activity => {
+        if(this.selectedActivities.length > 0) {
+          this.selectedActivities.forEach(activity => {
             let updatedEntryActivity: EntryActivity = {
               entry_id: this.entryToEdit.id,
               activity_id: activity
             }
-            this.moodService.addEntryActivities(updatedEntryActivity).subscribe(result => {
+            this.moodService.addActivities(updatedEntryActivity).subscribe(result => {
             });
           });
         }
@@ -193,4 +199,3 @@ export class EntryPageComponent implements OnInit {
     })
   }
 }
-

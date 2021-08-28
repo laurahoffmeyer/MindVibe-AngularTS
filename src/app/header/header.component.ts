@@ -18,11 +18,27 @@ export class HeaderComponent implements OnInit {
     this.auth.user$.subscribe(user => {
       if(user) {
         this.id = user.uid;
-        console.log(this.id);
+        this.inactivityTime(this.auth);
       } else {
         this.id = "";
         this.router.navigate(["/homepage"]);
       }
     })
   }
+  inactivityTime(myService) {
+    var time;
+    window.onload = resetTimer;
+    // DOM Events
+    document.onmousemove = resetTimer;
+    document.onkeydown = resetTimer;
+  
+    function logout() {
+      myService.signOut();
+      alert("You have been logged out due to inactivity.")
+    }
+    function resetTimer() {
+        clearTimeout(time);
+        time = setTimeout(logout, 600000)
+    }
+  };
 }

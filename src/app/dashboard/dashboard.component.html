@@ -1,5 +1,5 @@
-  <div class="dash-container">
-    <h1>Hello {{ displayName }}</h1>
+  <div class="container dash-container">
+    <h1>Hello,<br>{{ displayName }}</h1>
     <ng-template [ngIf]="displayAverage" [ngIfElse]="newUser">
       <div>
         <h3>Your average daily mood is {{ displayAverage }} / 5</h3>
@@ -26,14 +26,14 @@
       </div>
     </ng-template>
     <ng-template #newUser>
-      <div class="welcome container">
+      <div class="welcome">
         <h2>Welcome!</h2>
         <h4>It looks like you're new here.</h4>
         <h4>Let's get started by adding your first entry!</h4>
         <h4>Just click the + sign below.</h4>
         </div>
     </ng-template>
-    <button (click)="goToEntryPage()">
-      <i class="fas fa-plus-circle fa-5x"></i>
+    <button class="add-new" (click)="goToEntryPage()">
+      <span>Add</span> <i class="fas fa-plus-circle fa-5x"></i> <span>New</span>
     </button>  
   </div>

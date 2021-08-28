@@ -1,4 +1,15 @@
-.stat-container .container {
+.stat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 550px;
+}
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 500px;
   margin: 15px auto 50px auto;
 }
@@ -90,6 +101,20 @@ button {
 .amount {
   font-size: 18px;
   padding-bottom:10px;
+}
+.add-new {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.add-new span {
+  font-size: 16px;
+  color: #9268F2;
+}
+.add-new i {
+  padding-right: 10px;
+  padding-left: 10px;
 }
 @media only screen and (min-width: 600px) {
   .report-buttons {

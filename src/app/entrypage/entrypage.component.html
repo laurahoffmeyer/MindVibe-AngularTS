@@ -1,55 +1,140 @@
 <div class="container entry-container">
   <form>
-    <h1>Create New Entry</h1>
+    <div (click)="goToPastEntries()" class="exit">
+      <i class="far fa-times-circle"></i>
+    </div>
+    <h1>{{pageTitle}}</h1>
 
-    <h3>How are you feeling today?</h3>
-    <div class="moods-container">
-      <fieldset id="moods" name="moods" class="moods">
-        <input name="mood" id="sad" class="sad" type="radio" [(ngModel)]="mood" [value]="1" required><label for="sad"><i class="far fa-sad-tear"></i></label>
-        <input name="mood" id="frown" class="frown" type="radio" [(ngModel)]="mood" [value]="2"><label for="frown"><i class="far fa-frown"></i></label>
-        <input name="mood" id="meh" class="meh" type="radio" [(ngModel)]="mood" [value]="3"><label for="meh"><i class="far fa-meh"></i></label>
-        <input name="mood" id="smile" class="smile" type="radio" [(ngModel)]="mood" [value]="4"><label for="smile"><i class="far fa-smile"></i></label>
-        <input name="mood" id="laugh" class="laugh" type="radio" [(ngModel)]="mood" [value]="5"><label for="laugh"><i class="far fa-laugh-beam"></i></label>
+    <div class="button-group">
+      <div [ngClass]="{'hide' : formStep === 1, 'full-width' : formStep === 7}">
+        <button class="arrow" (click)="goPrev()"><i class="fas fa-chevron-left"></i> Prev</button>
+      </div>
+      <div [ngClass]="{'hide' : formStep === 7, 'full-width' : formStep === 1}">
+        <button class="arrow" (click)="goNext()">Next <i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div [ngClass]="{'hide' : formStep !== 1}">
+      <h3>Overall, how are you feeling?</h3>
+      <div class="moods-container">
+        <fieldset id="moods" name="moods">
+          <input name="mood" id="sad" type="radio" [(ngModel)]="mood" [value]="1" required><label for="sad"><i class="far fa-sad-tear"></i></label>
+          <input name="mood" id="frown" type="radio" [(ngModel)]="mood" [value]="2"><label for="frown"><i class="far fa-frown"></i></label>
+          <input name="mood" id="meh" type="radio" [(ngModel)]="mood" [value]="3"><label for="meh"><i class="far fa-meh"></i></label>
+          <input name="mood" id="smile" type="radio" [(ngModel)]="mood" [value]="4"><label for="smile"><i class="far fa-smile"></i></label>
+          <input name="mood" id="laugh" type="radio" [(ngModel)]="mood" [value]="5"><label for="laugh"><i class="far fa-laugh-beam"></i></label>
+        </fieldset>
+      </div>
+    </div>
+
+    <div [ngClass]="{'hide' : formStep !== 2}">
+      <h3>What did you do?</h3>
+      <fieldset class="checkboxes">
+        <div *ngFor="let activity of dbSocialActivities; let i = index">
+          <label class="social" for="{{ activity.id }}">
+            <input
+              [checked]="selectedActivities.includes(activity.id)"
+              (change)="toggleActivityList(activity.id, $event)"
+              id="{{ activity.id }}"
+              name="{{ activity.id }}"
+              type="checkbox"
+              value="{{ activity.id }}"
+            />
+            {{ activity.name }}
+            <span class="checkmark"></span>
+          </label>
+        </div>
       </fieldset>
     </div>
 
-    <h3>What did you do?</h3>
+    <div [ngClass]="{'hide' : formStep !== 3}">
+      <h3>Did anything affect your health?</h3>
+      <fieldset class="checkboxes">
+        <div *ngFor="let activity of dbHealthActivities; let i = index">
+          <label class="health" for="{{ activity.id }}">
+            <input
+              [checked]="selectedActivities.includes(activity.id)"
+              (change)="toggleActivityList(activity.id, $event)"
+              id="{{ activity.id }}"
+              name="{{ activity.id }}"
+              type="checkbox"
+              value="{{ activity.id }}"
+            />
+            {{ activity.name }}
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
 
-    <ul class="key">
-      <li class="social">Social</li>
-      <li class="health">Health</li>
-      <li class="emotion">Emotion</li>
-      <li class="activity">Activity</li>
-      <li class="action">Action</li>
-    </ul>   
+    <div [ngClass]="{'hide' : formStep !== 4}">
+      <h3>What emotions did you have?</h3>
+      <fieldset class="checkboxes">
+        <div *ngFor="let activity of dbEmotionActivities; let i = index">
+          <label class="emotion" for="{{ activity.id }}">
+            <input
+              [checked]="selectedActivities.includes(activity.id)"
+              (change)="toggleActivityList(activity.id, $event)"
+              id="{{ activity.id }}"
+              name="{{ activity.id }}"
+              type="checkbox"
+              value="{{ activity.id }}"
+            />
+            {{ activity.name }}
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
 
-    <fieldset id="activity">
-      <div *ngFor="let activity of activityArray; let i = index">
-        <label [ngClass]="activity.category === 'Social' ? 'social' : '' || 
-        activity.category === 'Activity' ? 'activity' : '' ||
-        activity.category === 'Health' ? 'health' : '' ||
-        activity.category === 'Action' ? 'action' : '' ||
-        activity.category === 'Emotion' ? 'emotion' : ''
-        " for="{{ activity.id }}">
-          <input
-            [checked]="activityList.includes(activity.id)"
-            (change)="toggleActivityList(activity.id, $event)"
-            id="{{ activity.id }}"
-            name="{{ activity.id }}"
-            type="checkbox"
-            value="{{ activity.id }}"
-          />
-          {{ activity.name }}
-          <span class="checkmark"></span>
-        </label>
-      </div>
-    </fieldset>
+    <div [ngClass]="{'hide' : formStep !== 5}">
+      <h3>What activities did you do?</h3>
+      <fieldset class="checkboxes">
+        <div *ngFor="let activity of dbActivityActivities; let i = index">
+          <label class="activity" for="{{ activity.id }}">
+            <input
+              [checked]="selectedActivities.includes(activity.id)"
+              (change)="toggleActivityList(activity.id, $event)"
+              id="{{ activity.id }}"
+              name="{{ activity.id }}"
+              type="checkbox"
+              value="{{ activity.id }}"
+            />
+            {{ activity.name }}
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
 
-    <h3>Write down your thoughts <small>(optional)</small><br><br></h3>
-    <textarea Rows="5" id="journal" name="journal" [(ngModel)]="journalentry"> </textarea>
-    <button *ngIf="entryToEdit.id" (click)="updateEntry()">Update Entry</button>
-    <button *ngIf="entryToEdit.id === undefined" (click)="addNewEntry()">
-      Submit Entry
-    </button>
+    <div [ngClass]="{'hide' : formStep !== 6}">
+      <h3>What actions did you take?</h3>
+      <fieldset class="checkboxes">
+        <div *ngFor="let activity of dbActionActivities; let i = index">
+          <label class="action" for="{{ activity.id }}">
+            <input
+              [checked]="selectedActivities.includes(activity.id)"
+              (change)="toggleActivityList(activity.id, $event)"
+              id="{{ activity.id }}"
+              name="{{ activity.id }}"
+              type="checkbox"
+              value="{{ activity.id }}"
+            />
+            {{ activity.name }}
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div [ngClass]="{'hide' : formStep !== 7, 'journal' : true}">
+      <h3>Write down your thoughts <small>(optional)</small><br><br></h3>
+      <textarea Rows="5" name="journal" [(ngModel)]="journalentry"> </textarea>
+      <div [ngClass]="{'hide' : formStep !== 7, 'submit' : true}">
+        <button *ngIf="entryToEdit.id" (click)="updateEntry()">Update</button>
+        <button *ngIf="entryToEdit.id === undefined" (click)="addNewEntry()">Submit</button>
+      </div>  
+    </div>
+
   </form>
 </div>

@@ -1,7 +1,7 @@
 <div class="container wrapper">
   <h1>Your Past Entries</h1>
-  <button (click)="goToEntryPage()">
-    <i class="fas fa-plus-circle fa-5x"></i>
+  <button class="add-new" (click)="goToEntryPage()">
+    <span>Add</span> <i class="fas fa-plus-circle fa-5x"></i> <span>New</span>
   </button>
   <div class="no-entries" *ngIf="userEntries.length === 0">
     <i class="fas fa-chevron-up fa-3x"></i>
@@ -22,12 +22,23 @@
     </div>
     <div class="dateAndTime">
       <button (click)="displayEntry(entry)">
-        {{ entry.entrydate }}
-        {{ entry.entrytime }}
+        <span>{{ entry.entrydate }}</span>
+        <span><small>{{ entry.entrytime }}</small></span>
       </button>
     </div>
-    <button class="delete" (click)="deleteEntry(entry)">
+    <button class="delete" (click)="openPopup(entry)">
       <i class="far fa-trash-alt fa-1x"></i>
     </button>
+  </div>
+  <div [ngClass]="{'hide' : popupActive === false, 'popup-overlay' : true}">
+    <div class="popup">
+      <div class="popup-content">
+        <h3>Are you sure?</h3>
+        <div>
+          <button class="cancel" (click)="closePopup()">Cancel</button>
+          <button class="delete" (click)="deleteEntry()">Delete</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
