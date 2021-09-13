@@ -1,2 +1,4 @@
 # MindVibe-AngularTS
-A thought tracking application built with Angular - using a Heroku database and CRUD API
+A thought tracking application built with Angular - using a custom built postgreSQL database and CRUD API
+
+Live Preview: https://mindvibe.netlify.app/
