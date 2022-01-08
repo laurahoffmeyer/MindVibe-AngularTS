@@ -105,22 +105,22 @@ h3 {
   margin: 5px;
 }
 .popup-content .cancel {
-  border: 1px solid #18083D;
-  color: #18083D;
+  border: 1px solid #120727;
+  color: #120727;
   border-radius: 5px;
 }
 .popup-content .cancel:hover {
-  border: 1px solid #4A19BD;
-  color: #4A19BD;
+  border: 1px solid #5B26D6;
+  color: #5B26D6;
 }
 .popup-content .delete {
-  background: #18083D;
+  background: #120727;
   border: none;
   color: #9268F2;
   border-radius: 5px;
 }
 .popup-content .delete:hover {
-  background: #4A19BD;
+  background: #5B26D6;
 }
 
 @media only screen and (min-width: 450px) {

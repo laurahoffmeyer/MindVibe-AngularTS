@@ -8,19 +8,19 @@
   padding: 20px 0;
   width: 100%;
   color: white;
-  background-color: #18083D;
+  background-color: #120727;
 }
 .links-container div {
   flex-grow: 1;
 }
 .links-container div a {
   display: flex;
-  color: #5F1FF0;
+  color: #5B26D6;
   text-decoration: none;
   justify-content: center;
 }
 .links-container div {
-  border-right: 1px solid #5F1FF0;
+  border-right: 1px solid #5B26D6;
 }
 .links-container div:last-child {
   border: none;

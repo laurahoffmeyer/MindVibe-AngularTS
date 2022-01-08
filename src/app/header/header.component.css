@@ -4,12 +4,12 @@ header {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: #18083D;
+  background-color: #120727;
   z-index: 100;
   font-size: 18px;
 }
 header a {
-  color: #5F1FF0;
+  color: #5B26D6;
   text-decoration: none;
 }
 header a:hover {
@@ -43,7 +43,7 @@ button {
   cursor: pointer;
   background-color: transparent;
   font-size: 18px;
-  color: #5F1FF0;
+  color: #5B26D6;
   border: none;
   font-family: "Ovo", serif;
   text-decoration: none;
@@ -63,7 +63,7 @@ button:hover {
     align-items: center;
   }
   .navbar-brand {
-    border-right: 1px solid #5F1FF0;
+    border-right: 1px solid #5B26D6;
     padding-right: 30px;
     margin-right: 25px;
   }
@@ -77,7 +77,7 @@ button:hover {
   } 
   .brand p {
     display: flex;
-    color: #5F1FF0;
+    color: #5B26D6;
     font-size: 15px;
     margin-top: 12px;
   }  

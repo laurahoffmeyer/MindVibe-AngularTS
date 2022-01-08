@@ -52,12 +52,12 @@ button {
   font-weight: bold;
   max-width: 400px;
   width: 100%;
-  color: #4A19BD;
+  color: #5B26D6;
   background-color: #9268F2;
   border: none;
 }
 button:hover {
-  background-color: #18083D!important;
+  background-color: #120727!important;
   cursor: pointer;
 }
 .face {

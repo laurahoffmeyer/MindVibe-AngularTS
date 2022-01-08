@@ -205,7 +205,7 @@ input:checked ~ .checkmark:after {
   top: 5px;
   width: 5px;
   height: 10px;
-  border: solid #4A19BD;
+  border: solid #5B26D6;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -243,14 +243,14 @@ input:checked ~ .checkmark:after {
 }
 .submit button {
   background-color: #9268F2!important;
-  color: #4A19BD!important;
+  color: #5B26D6!important;
   font-weight: bold;
   font-size: 22px;
   max-width: 400px;
   width: 100%;
 }
 .submit button:hover {
-  background-color: #18083D!important;
+  background-color: #120727!important;
 }
 textarea {
   width: 100%;
@@ -292,11 +292,11 @@ textarea {
     padding: 5px;
   }  
   .entry-container button:hover {
-    border: 1px solid #18083D;
-    color: #18083D;
+    border: 1px solid #120727;
+    color: #120727;
   }  
   .entry-container button:hover i {
-    color: #18083D;
+    color: #120727;
   } 
 }
 @media only screen and (min-width: 768px) {

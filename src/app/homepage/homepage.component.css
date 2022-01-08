@@ -14,18 +14,18 @@ button {
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: #4A19BD;
+  color: #5B26D6;
   font-size: 20px;
   margin: 20px 0;
 }
 button p {
-  border-left: 1px solid #4A19BD;
+  border-left: 1px solid #5B26D6;
   padding-left: 15px;
 }
 button:hover {
   cursor: pointer;
-  color: #4A19BD;
-  background-color: #18083D;
+  color: #5B26D6;
+  background-color: #120727;
 }
 .homepage i {
   padding: 0 15px 0 0;

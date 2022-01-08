@@ -9,12 +9,12 @@ html {
 body {
   padding: 0;
   font-family: "Ovo", serif;
-  color: #18083D;
+  color: #120727;
   clear: both;
-  background-color: #4A19BD;
+  background-color: #5B26D6;
 }
 a {
-  color: #18083D;
+  color: #120727;
 }
 a:hover {
   color: #9268F2;
@@ -29,7 +29,7 @@ a:visited {
   color: #9268F2;
 }
 .fa-plus-circle:hover {
-  color: #18083D;
+  color: #120727;
 }
 button {
   font-family: "Ovo", serif;

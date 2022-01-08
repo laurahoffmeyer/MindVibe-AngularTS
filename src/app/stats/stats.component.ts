@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoodService } from '../services/mood.service';
 import { Entry } from '../models/entry.model';
 import { AuthService } from './../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stats',
@@ -38,11 +39,17 @@ export class StatsComponent implements OnInit {
 
   constructor(
     private moodService: MoodService,
-    private auth: AuthService
+    private auth: AuthService, 
+    public router: Router
   ) { }
 
   ngOnInit(): void {
     this.displayEntries();
+  }
+
+  goToEntryPage() {
+    this.router.navigate(['/entrypage']);
+    this.moodService.clickedEntry = {};
   }
 
   displayEntries() {
@@ -154,12 +161,8 @@ export class StatsComponent implements OnInit {
               }
             })
           });
-            });
-          });
-        }    
-      }    
+        });
+      });
+    }    
+  }    
 }
-
- 
-  
-
